@@ -4,7 +4,11 @@ import uuid
 
 from django.contrib.admin import FieldListFilter, SimpleListFilter, ListFilter
 from django.core.exceptions import ImproperlyConfigured, ValidationError
-from django.core.urlresolvers import reverse
+try:
+    # deprecated in 1.9, moved to django.urls in 1.10, removed at 2.0
+    from django.core.urlresolvers import reverse, NoReverseMatch
+except ImportError:
+    from django.urls import reverse, NoReverseMatch
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
