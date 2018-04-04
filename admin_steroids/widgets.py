@@ -2,7 +2,12 @@ from __future__ import print_function
 
 from django import forms
 from django.contrib.admin.widgets import ManyToManyRawIdWidget, ForeignKeyRawIdWidget
-from django.core.urlresolvers import reverse, NoReverseMatch
+try:
+    # Deprecated in 1.9, moved to django.urls in 1.10, removed at 2.0
+    from django.core.urlresolvers import reverse, NoReverseMatch
+except ImportError:
+    from django.urls import reverse, NoReverseMatch
+    
 from django.forms.widgets import Select, TextInput
 try:
     from django.forms.widgets import flatatt
